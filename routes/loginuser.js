@@ -13,9 +13,11 @@ router.post('/', authenticateUser , (req, res) => {
     //   console.log('------------------------------->' + payload.username);
 
       // return the JWT token for the future API calls
+      // res.addHeader("Access-Control-Allow-Origin", "*");
+      
       res.json({
         success: true,
-        message: 'Login successful!',
+        message: req.user.username +' Login successful!',
         token: token
       });
    

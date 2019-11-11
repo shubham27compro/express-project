@@ -13,6 +13,16 @@ app.get('/', (req, res) => {
 } );
 
 function timeLog(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    // res.writeHead(200, {
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Access-Control-Allow-Headers": "*"
+    //   });
+    // res.setheaders({
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Headers': '*'
+    //   })
     console.log('Time: ', Date.now())
     next()
 }

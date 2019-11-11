@@ -7,11 +7,15 @@ router.post('/', function (req, res) {
     console.log(req.body);
     var user = {
         username: req.body.username,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         password: req.body.password
     };
     checkAndAddUser(user);
+    // res.addHeader("Access-Control-Allow-Origin", "*");
+    
     if(user){
-        res.send(user.username + "'s sign-up complete!!");
+        res.send(user.firstname + "'s sign-up complete!!");
     } else {
         res.send('Username already taken.. signup failed');
     }
@@ -26,7 +30,11 @@ function checkAndAddUser(user){
         console.log('This username is already taken.. try again');
         user = null;
     } else {
-        users[newUser] = user.password;
+        users[newUser] = {
+            firstname : user.firstname,
+            lastname : user.lastname,
+            password : user.password
+        };
         fs.writeFile('./database/users.json', JSON.stringify(users), function (err) {
             if (err) {
             console.error('unable to sign up');
