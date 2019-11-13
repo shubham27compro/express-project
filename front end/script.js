@@ -22,14 +22,14 @@ function login() {
     console.log('login');
     var lusername = document.getElementById('loginusername').value;
     var lpassword = document.getElementById('loginpassword').value;
+    var lpayload =  {
+        username: lusername,
+        password: lpassword
+    };
     $.post("http://localhost:5000/loginuser",
-        {
-            username: lusername,
-            password: lpassword
-        },
+        JSON.stringify(lpayload),
         function (data, status) {
             console.log(JSON.stringify(data));
-            alert("Data: " + data + "\nStatus: " + status);
         });
 }
 
@@ -39,13 +39,14 @@ function signup() {
     var sfirstname = document.getElementById('signupfirstname').value;
     var slastname = document.getElementById('signuplastname').value;
     var spassword = document.getElementById('signuppassword').value;
+    var spayload = {
+        username: susername,
+        firstname: sfirstname,
+        lastname: slastname,
+        password: spassword
+    };
     $.post("http://localhost:5000/signup",
-        {
-            username: susername,
-            firstname: sfirstname,
-            lastname: slastname,
-            password: spassword
-        },
+    JSON.stringify(spayload),
         function (data, status) {
             console.log(JSON.stringify(data));
             alert("Data: " + data + "\nStatus: " + status);
